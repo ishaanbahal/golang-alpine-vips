@@ -1,9 +1,8 @@
-FROM golang:alpine
+ARG GOLANG_IMAGE_TAG="1.19.3-alpine3.17"
+FROM golang:${GOLANG_IMAGE_TAG}
 
-# Version latest is 8.7.x but go-bimg crashes because of that
-# Issue: https://github.com/h2non/bimg/issues/244
-# So using 8.6.5 for now
-ARG VIPS_VERSION="8.6.5"
+# So using 8.12.0 for now
+ARG VIPS_VERSION="8.12.0"
 
 RUN wget https://github.com/libvips/libvips/releases/download/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.gz
 RUN apk update && apk add automake build-base pkgconfig glib-dev gobject-introspection libxml2-dev expat-dev jpeg-dev libwebp-dev libpng-dev
